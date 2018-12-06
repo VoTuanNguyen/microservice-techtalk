@@ -2,6 +2,7 @@ package com.microservice.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +15,7 @@ import com.microservice.entity.User;
 import com.microservice.service.UserService;
 
 @RestController
+@RefreshScope 
 public class Controller {
 	
 	@Value("${config.variable}")
