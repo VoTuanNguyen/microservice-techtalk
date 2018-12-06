@@ -1,0 +1,22 @@
+server:
+  port: 8080
+  
+spring:
+  profiles:
+    active: default
+  cloud:
+    config:
+      uri: http://localhost:8888
+  application:
+    name: customer-service
+      
+eureka:
+  client:
+    eureka-server-port: 8761
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+        - "*"

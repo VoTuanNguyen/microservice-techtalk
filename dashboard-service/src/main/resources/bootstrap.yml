@@ -1,0 +1,22 @@
+server:
+  port: 9090
+  
+spring:
+  cloud:
+    config:
+      uri: http://localhost:8888
+  application:
+    name: dashboard-service
+  profiles:
+    active: default
+      
+eureka:
+  client:
+    eureka-server-port: 8761
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+        - "*"
