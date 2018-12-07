@@ -1,6 +1,7 @@
 package com.microservice.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,6 +13,7 @@ import com.microservice.feign.ServiceProxy;
 import com.microservice.model.User;
 
 @RestController
+@RefreshScope
 public class DashboardController {
 	@Autowired
 	private ServiceProxy serviceProxy;

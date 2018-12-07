@@ -15,7 +15,7 @@ import com.microservice.entity.User;
 import com.microservice.service.UserService;
 
 @RestController
-@RefreshScope 
+@RefreshScope
 public class Controller {
 	
 	@Value("${config.variable}")
