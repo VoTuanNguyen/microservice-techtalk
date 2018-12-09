@@ -1,0 +1,97 @@
+version: '3'
+services:
+  eureka-discovery:
+    container_name: docker-eureka-discovery
+    image: eureka-server
+    build: ./eureka-discovery
+    #restart: always
+    expose:
+      - 8761
+    ports:
+      - 8761:8761
+
+  config-server:
+    image: config-server
+    container_name: docker-config-server
+    build: ./config-server
+    #restart: always
+    expose:
+      - 8888
+    links:
+      - eureka-discovery
+    ports:
+      - 8888:8888
+    depends_on:
+      - eureka-discovery
+
+  auth-service:
+    image: oauth-service
+    container_name: docker-auth-service
+    build: ./auth-service
+    #restart: always
+    expose:
+      - 9000
+    ports:
+      - 9000:9000
+    links:
+      - eureka-discovery
+      - config-server
+    depends_on:
+      - eureka-discovery
+      - config-server
+
+  customer-service:
+    image: customer-service
+    container_name: docker-customer-service
+    build: ./customer-service
+    #restart: always
+    expose:
+      - 7070
+    ports:
+      - 7070:7070
+    links:
+      - eureka-discovery
+      - config-server
+      - auth-service
+    depends_on:
+      - eureka-discovery
+      - config-server
+
+  dashboard-service:
+    image: dashboard-service
+    container_name: docker-dashboard-service
+    build: ./dashboard-service
+    #restart: always
+    expose:
+      - 9090
+    ports:
+      - 9090:9090
+    links:
+      - eureka-discovery
+      - config-server
+      - auth-service
+      - customer-service
+    depends_on:
+      - eureka-discovery
+      - config-server
+
+  gateway-service:
+    image: gateway-service
+    container_name: docker-gateway-service
+    build: ./gateway-service
+    #restart: always
+    expose:
+      - 8080
+    ports:
+      - 8080:8080
+    links:
+      - eureka-discovery
+      - config-server
+      - auth-service
+      - customer-service
+      - dashboard-service
+    depends_on:
+      - eureka-discovery
+      - config-server
+
+

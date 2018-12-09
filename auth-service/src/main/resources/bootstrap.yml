@@ -6,13 +6,5 @@ spring:  application:    name: oauth-service  cloud:    config:      uri: h
 eureka:  client:    eureka-server-port: 8761
     
 management:  endpoints:    web:      exposure:        include:        - "*"
-jwt:
-  enhance:
-    store:
-      file: classpath:/enhance/keystore.jks
-      password: nguyenvt2
-    key:
-      alias: nguyenvt2@fsoft.com.vn
-      password: nguyenvt2
   
     
