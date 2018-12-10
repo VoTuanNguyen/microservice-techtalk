@@ -1,7 +1,7 @@
 version: '3'
 services:
   eureka-discovery:
-    container_name: docker-eureka-discovery
+    container_name: eureka-discovery
     image: eureka-server
     build: ./eureka-discovery
     #restart: always
@@ -12,7 +12,7 @@ services:
 
   config-server:
     image: config-server
-    container_name: docker-config-server
+    container_name: config-server
     build: ./config-server
     #restart: always
     expose:
@@ -23,10 +23,15 @@ services:
       - 8888:8888
     depends_on:
       - eureka-discovery
+    environment:
+      server.port: 8888
+      eureka.client.enabled: 'true'
+      eureka.host: eureka-discovery
+      eureka.instance.preferIpAddress: 'true'
 
   auth-service:
     image: oauth-service
-    container_name: docker-auth-service
+    container_name: auth-service
     build: ./auth-service
     #restart: always
     expose:
@@ -39,10 +44,15 @@ services:
     depends_on:
       - eureka-discovery
       - config-server
+    environment:
+      server.port: 9000
+      eureka.client.enabled: 'true'
+      eureka.host: eureka-discovery
+      eureka.instance.preferIpAddress: 'true'
 
   customer-service:
     image: customer-service
-    container_name: docker-customer-service
+    container_name: customer-service
     build: ./customer-service
     #restart: always
     expose:
@@ -56,10 +66,15 @@ services:
     depends_on:
       - eureka-discovery
       - config-server
+    environment:
+      server.port: 7070
+      eureka.client.enabled: 'true'
+      eureka.host: eureka-discovery
+      eureka.instance.preferIpAddress: 'true'
 
   dashboard-service:
     image: dashboard-service
-    container_name: docker-dashboard-service
+    container_name: dashboard-service
     build: ./dashboard-service
     #restart: always
     expose:
@@ -74,10 +89,15 @@ services:
     depends_on:
       - eureka-discovery
       - config-server
+    environment:
+      server.port: 9090
+      eureka.client.enabled: 'true'
+      eureka.host: eureka-discovery
+      eureka.instance.preferIpAddress: 'true'
 
   gateway-service:
     image: gateway-service
-    container_name: docker-gateway-service
+    container_name: gateway-service
     build: ./gateway-service
     #restart: always
     expose:
@@ -93,5 +113,8 @@ services:
     depends_on:
       - eureka-discovery
       - config-server
-
-
+    environment:
+      server.port: 8080
+      eureka.client.enabled: 'true'
+      eureka.host: eureka-discovery
+      eureka.instance.preferIpAddress: 'true'
