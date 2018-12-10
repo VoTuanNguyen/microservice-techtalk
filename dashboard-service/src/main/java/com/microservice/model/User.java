@@ -2,7 +2,7 @@ package com.microservice.model;
 
 public class User {
 	private String username;
-	private String passowrd;
+	private String password;
 	private String name;
 	private Role role;
 
@@ -11,10 +11,10 @@ public class User {
 		// TODO Auto-generated constructor stub
 	}
 
-	public User(String username, String passowrd, String name, Role role) {
+	public User(String username, String password, String name, Role role) {
 		super();
 		this.username = username;
-		this.passowrd = passowrd;
+		this.password = password;
 		this.name = name;
 		this.role = role;
 	}
@@ -27,12 +27,12 @@ public class User {
 		this.username = username;
 	}
 
-	public String getPassowrd() {
-		return passowrd;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setPassowrd(String passowrd) {
-		this.passowrd = passowrd;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getName() {
@@ -53,6 +53,6 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [username=" + username + ", passowrd=" + passowrd + ", name=" + name + ", role=" + role + "]";
+		return "User [username=" + username + ", password=" + password + ", name=" + name + ", role=" + role + "]";
 	}
 }
