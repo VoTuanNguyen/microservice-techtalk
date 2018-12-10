@@ -26,7 +26,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 //		System.out.println(this.passwordEncoder.encode("admin"));
 		com.microservice.entity.User user = userService.getUserByUsername(username);
 		UserDetails userDetails = User.withUsername(user.getUsername())
-				.password("{bcrypt}" + user.getPassword()).roles(user.getRole().getRole()).build();
+				.password(user.getPassword()).roles(user.getRole().getRole()).build();
 
 		return Stream.of(userDetails).filter(u -> u.getUsername().equals(username)).findFirst()
 				.orElseThrow(() -> new UsernameNotFoundException("Couldn't find the username " + username + "!"));

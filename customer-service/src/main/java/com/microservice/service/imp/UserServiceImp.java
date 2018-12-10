@@ -3,6 +3,7 @@ package com.microservice.service.imp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.microservice.entity.User;
@@ -14,6 +15,8 @@ public class UserServiceImp implements UserService {
 
 	@Autowired
 	private UserRepository userRepository;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	@Override
 	public User getUserByUsername(String username) {
@@ -27,6 +30,7 @@ public class UserServiceImp implements UserService {
 
 	@Override
 	public User addUser(User user) {
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		return userRepository.saveAndFlush(user);
 	}
 
