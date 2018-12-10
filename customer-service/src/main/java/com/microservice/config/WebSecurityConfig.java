@@ -2,6 +2,9 @@ package com.microservice.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 
@@ -13,7 +16,9 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Configuration
 @EnableSwagger2
-public class SwaggerUIConfig extends WebSecurityConfigurerAdapter {
+@EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	// configuration swagger 2
 	@Bean
 	public Docket api() {
@@ -26,4 +31,11 @@ public class SwaggerUIConfig extends WebSecurityConfigurerAdapter {
 
 		registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
 	}
+	
+	@Override
+	@Bean
+	public AuthenticationManager authenticationManagerBean() throws Exception {
+		return super.authenticationManagerBean();
+	}
+
 }

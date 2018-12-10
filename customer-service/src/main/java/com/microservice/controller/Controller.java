@@ -17,34 +17,35 @@ import com.microservice.service.UserService;
 @RestController
 @RefreshScope
 public class Controller {
-	
+
 	@Value("${config.variable}")
 	private String welcome;
 	@Autowired
 	private UserService userService;
-	
+
 	@GetMapping("/welcome")
 	public ResponseEntity<String> welcome() {
 		return ResponseEntity.ok(welcome);
 	}
+
 	@GetMapping("/getinfo/{username}")
 	public ResponseEntity<User> getInfoUser(@PathVariable String username) {
 		return ResponseEntity.ok().body(userService.getUserByUsername(username));
 	}
-	
+
 	@GetMapping("/profile")
 	public ResponseEntity<User> getProfile() {
 		String username = SecurityContextHolder.getContext().getAuthentication().getName();
 		return ResponseEntity.ok(userService.getUserByUsername(username));
 	}
-	
+
 	@GetMapping("/viewall")
 	public ResponseEntity<?> viewAll() {
 		return ResponseEntity.ok(userService.findAll());
 	}
-	
+
 	@PostMapping("/adduser")
-	public ResponseEntity<?> addUser(@RequestBody User user){
+	public ResponseEntity<?> addUser(@RequestBody User user) {
 		return ResponseEntity.ok(userService.addUser(user));
 	}
 }
