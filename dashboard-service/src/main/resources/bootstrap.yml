@@ -2,21 +2,79 @@ server:
   port: 9090
   
 spring:
-  cloud:
-    config:
-      uri: http://localhost:8888
   application:
     name: dashboard-service
-  profiles:
-    active: default
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: config-server
+      fail-fast: true
+      retry:
+        initial-interval: 2000
+        max-interval: 10000
+        multiplier: 2
+        max-attempts: 10
       
 eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
   client:
-    eureka-server-port: 8761
-
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+      
 management:
   endpoints:
     web:
       exposure:
         include:
         - "*"
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      show-details: ALWAYS
+---
+server:
+  port: 9090
+  
+spring:
+  profiles: docker
+  application:
+    name: dashboard-service
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: config-server
+      fail-fast: true
+      retry:
+        initial-interval: 2000
+        max-interval: 10000
+        multiplier: 2
+        max-attempts: 10
+      
+eureka:
+  instance:
+    hostname: dashboard-service
+    prefer-ip-address: true
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://eureka-discovery:8761/eureka/
+      
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+        - "*"
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      show-details: ALWAYS

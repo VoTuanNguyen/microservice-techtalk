@@ -49,6 +49,8 @@ services:
       eureka.client.enabled: 'true'
       eureka.host: eureka-discovery
       eureka.instance.preferIpAddress: 'true'
+      spring.cloud.config.enabled: 'true'
+      spring.cloud.config.service-id: config-server
 
   customer-service:
     image: customer-service
@@ -71,6 +73,8 @@ services:
       eureka.client.enabled: 'true'
       eureka.host: eureka-discovery
       eureka.instance.preferIpAddress: 'true'
+      spring.cloud.config.enabled: 'true'
+      spring.cloud.config.service-id: config-server
 
   dashboard-service:
     image: dashboard-service
@@ -94,6 +98,8 @@ services:
       eureka.client.enabled: 'true'
       eureka.host: eureka-discovery
       eureka.instance.preferIpAddress: 'true'
+      spring.cloud.config.enabled: 'true'
+      spring.cloud.config.service-id: config-server
 
   gateway-service:
     image: gateway-service
@@ -118,3 +124,5 @@ services:
       eureka.client.enabled: 'true'
       eureka.host: eureka-discovery
       eureka.instance.preferIpAddress: 'true'
+      spring.cloud.config.enabled: 'true'
+      spring.cloud.config.service-id: config-server

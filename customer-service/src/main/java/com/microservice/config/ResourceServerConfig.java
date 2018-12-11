@@ -15,6 +15,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 			.antMatchers("/welcome/**").permitAll()
 			.antMatchers("/getinfo/**").permitAll()
 			.antMatchers("/actuator/**").permitAll()
+			.antMatchers("/**").permitAll()
 			.antMatchers("/profile/**").access("hasAnyRole('ADMIN', 'USER')")
 			.antMatchers("/viewall/**").access("hasRole('ADMIN')")
 			.antMatchers("/adduser/**").access("hasRole('ADMIN')")

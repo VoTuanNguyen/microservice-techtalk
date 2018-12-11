@@ -1,0 +1,11 @@
+config:
+  variable: LADY AND GENTLEMAN! WELCOME TO MICROSERVICE!
+  
+jwt:
+  enhance:
+    store:
+      file: classpath:/enhance/keystore.jks
+      password: nguyenvt2
+    key:
+      alias: nguyenvt2@fsoft.com.vn
+      password: nguyenvt2
