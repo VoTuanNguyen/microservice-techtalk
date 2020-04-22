@@ -22,8 +22,8 @@ security:
     client:
       accessTokenUri: http://localhost:9000/uaa/oauth/token
       userAuthorizationUri: http://localhost:9000/uaa/oauth/authorize
-      clientId: nguyenvt2
-      clientSecret: nguyenvt2   
+      clientId: 
+      clientSecret:    
     resource:
       userInfoUri: http://localhost:9000/uaa/userinfo
       preferTokenInfo: false  
