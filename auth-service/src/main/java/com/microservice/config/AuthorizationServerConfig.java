@@ -57,7 +57,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 
 		// @formatter:off
-		clients.inMemory().withClient("nguyenvt2").secret("{noop}nguyenvt2")
+		clients.inMemory().withClient("").secret("{noop}")
 				.authorizedGrantTypes("password", "client_credentials", "authorization_code", "refresh_token")
 				.autoApprove(true).scopes("profile", "read", "write")
 				.accessTokenValiditySeconds(60 * 60 * 24 * 1000)
